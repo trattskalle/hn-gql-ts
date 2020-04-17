@@ -189,7 +189,7 @@ type HackerNewsUser {
   """
   Delay in minutes between a comment's creation and its visibility to other users.
   """
-  delay: Int!
+  delay: Int
   """
   Creation date of the user, in Unix Time.
   """
