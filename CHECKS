@@ -1,2 +1,2 @@
 WAIT=1
-https://hn.app.sodapop.se/.well-known/apollo/server-health  {"status":"pass"}
+/.well-known/apollo/server-health  \{"status":"pass"\}
