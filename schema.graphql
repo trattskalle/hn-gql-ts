@@ -1,0 +1,229 @@
+schema {
+  query: Query
+}
+
+"""
+The Hacker News V0 API
+"""
+type Query {
+  item(
+    """
+    id of the item
+    """
+    id: Int!
+  ): HackerNewsItem
+  user(
+    """
+    id of the user
+    """
+    id: String!
+  ): HackerNewsUser
+  """
+  Up to 500 of the top stories
+  """
+  topStories(
+    """
+    Number of items to return
+    """
+    limit: Int
+    """
+    Initial offset of number of items to return
+    """
+    offset: Int
+  ): [HackerNewsItem]
+  """
+  Up to 500 of the newest stories
+  """
+  newStories(
+    """
+    Number of items to return
+    """
+    limit: Int
+    """
+    Initial offset of number of items to return
+    """
+    offset: Int
+  ): [HackerNewsItem]
+  """
+  Up to 200 of the Show HN stories
+  """
+  showStories(
+    """
+    Number of items to return
+    """
+    limit: Int
+    """
+    Initial offset of number of items to return
+    """
+    offset: Int
+  ): [HackerNewsItem]
+  """
+  Up to 200 of the Ask HN stories
+  """
+  askStories(
+    """
+    Number of items to return
+    """
+    limit: Int
+    """
+    Initial offset of number of items to return
+    """
+    offset: Int
+  ): [HackerNewsItem]
+  """
+  Up to 200 of the Job stores
+  """
+  jobStories(
+    """
+    Number of items to return
+    """
+    limit: Int
+    """
+    Initial offset of number of items to return
+    """
+    offset: Int
+  ): [HackerNewsItem]
+
+  """
+  Return list of stories
+  """
+  stories(
+    """
+    Number of items to return
+    """
+    limit: Int
+    """
+    Initial offset of number of items to return
+    """
+    offset: Int
+    """
+    Type of story to list
+    """
+    storyType: String!
+  ): [HackerNewsItem]
+}
+
+"""
+Stories, comments, jobs, Ask HNs and even polls are just items. They're identified by their ids, which are unique integers
+"""
+type HackerNewsItem {
+  """
+  The item's unique id.
+  """
+  id: String!
+  """
+  if the item is deleted
+  """
+  deleted: Boolean
+  """
+  The type of item. One of "job", "story", "comment", "poll", or "pollopt".
+  """
+  type: ItemType!
+  """
+  The item's author.
+  """
+  by: HackerNewsUser
+  """
+  Creation date of the item, in Unix Time.
+  """
+  time: Int!
+  """
+  Creation date of the item, in ISO8601
+  """
+  timeISO: String!
+  """
+  The comment, story or poll text. HTML.
+  """
+  text: String
+  """
+  if the item is dead
+  """
+  dead: Boolean
+  """
+  The URL of the story.
+  """
+  url: String
+  """
+  The story's score, or the votes for a pollopt.
+  """
+  score: Int
+  """
+  The title of the story, poll or job.
+  """
+  title: String
+  """
+  The item's comments, in ranked display order.
+  """
+  kids(
+    """
+    Number of items to return
+    """
+    limit: Int
+    """
+    Initial offset of number of items to return
+    """
+    offset: Int
+  ): [HackerNewsItem]
+  """
+  The item's parent. For comments, either another comment or the relevant story. For pollopts, the relevant poll.
+  """
+  parent: HackerNewsItem
+  """
+  A list of related pollopts, in display order.
+  """
+  parts: [HackerNewsItem]
+  """
+  In the case of stories or polls, the total comment count.
+  """
+  descendants: Int
+}
+
+"""
+Users are identified by case-sensitive ids. Only users that have public activity (comments or story submissions) on the site are available through the API.
+"""
+type HackerNewsUser {
+  """
+  The user's unique username. Case-sensitive.
+  """
+  id: String!
+  """
+  Delay in minutes between a comment's creation and its visibility to other users.
+  """
+  delay: Int!
+  """
+  Creation date of the user, in Unix Time.
+  """
+  created: Int!
+  """
+  Creation date of the user, in ISO8601
+  """
+  createdISO: String!
+  """
+  The user's optional self-description. HTML.
+  """
+  about: String
+  """
+  List of the user's stories, polls and comments.
+  """
+  submitted(
+    """
+    Number of items to return
+    """
+    limit: Int
+    """
+    Initial offset of number of items to return
+    """
+    offset: Int
+  ): [HackerNewsItem]
+}
+
+"""
+The type of item
+"""
+enum ItemType {
+  job
+  story
+  comment
+  poll
+  pollopt
+}

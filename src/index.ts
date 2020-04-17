@@ -1,12 +1,10 @@
 import { ApolloServer } from "apollo-server";
-import { GraphQLSchema } from "graphql";
-import { hnType } from "./hn";
+import { resolvers } from "./hn";
+import * as fs from "fs";
 
-const schema = new GraphQLSchema({
-  query: hnType,
-});
+const typeDefs = fs.readFileSync("./schema.graphql", "utf8").toString();
 
-const server = new ApolloServer({ schema });
+const server = new ApolloServer({ typeDefs, resolvers });
 
 server.listen(process.env.PORT || 4000).then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
