@@ -1,0 +1,21 @@
+{
+  "name": "hn-gql-ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Johan Lindskogen <johan@lindskogen.se>",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node --transpile-only ./src/index.ts",
+    "dev": "ts-node-dev --respawn ./src/index.ts"
+  },
+  "dependencies": {
+    "apollo-server": "^2.12.0",
+    "graphql": "^15.0.0",
+    "ts-node": "^8.8.2",
+    "typescript": "^3.8.3"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.4",
+    "ts-node-dev": "^1.0.0-pre.44"
+  }
+}
