@@ -1,3 +1,12 @@
+directive @cacheControl(
+  maxAge: Int
+  scope: CacheControlScope
+) on FIELD_DEFINITION | OBJECT | INTERFACE
+enum CacheControlScope {
+  PUBLIC
+  PRIVATE
+}
+
 schema {
   query: Query
 }
@@ -106,7 +115,7 @@ type Query {
 """
 Stories, comments, jobs, Ask HNs and even polls are just items. They're identified by their ids, which are unique integers
 """
-type HackerNewsItem {
+type HackerNewsItem @cacheControl(maxAge: 60) {
   """
   The item's unique id.
   """
@@ -181,7 +190,7 @@ type HackerNewsItem {
 """
 Users are identified by case-sensitive ids. Only users that have public activity (comments or story submissions) on the site are available through the API.
 """
-type HackerNewsUser {
+type HackerNewsUser @cacheControl(maxAge: 600) {
   """
   The user's unique username. Case-sensitive.
   """

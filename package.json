@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "apollo-server": "^2.12.0",
+    "apollo-server-plugin-response-cache": "^0.4.1",
     "graphql": "^15.0.0",
     "ts-node": "^8.8.2",
     "typescript": "^3.8.3"
