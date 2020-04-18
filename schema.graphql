@@ -119,7 +119,7 @@ type HackerNewsItem @cacheControl(maxAge: 60) {
   """
   The item's unique id.
   """
-  id: String!
+  id: Int!
   """
   if the item is deleted
   """

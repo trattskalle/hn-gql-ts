@@ -18,7 +18,7 @@ const getItems = (ids, { offset, limit }) => {
 
 export const resolvers = {
   HackerNewsItem: {
-    id: (item) => item.id.toString(),
+    id: (item) => item.id,
     by: (item) => {
       if (!item.by) {
         return null;

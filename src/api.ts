@@ -5,9 +5,9 @@ let get = (path: string) =>
     return res.json();
   });
 
-export const getItem = (id) => get(`item/${id}`);
+export const getItem = (id: number) => get(`item/${id}`);
 
-export const getUser = (id) => get(`user/${id}`);
+export const getUser = (id: number) => get(`user/${id}`);
 
 export const getTopStoryIds = () => get("topstories");
 
