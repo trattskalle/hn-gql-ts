@@ -1,2 +1,2 @@
 WAIT=1
-/.well-known/apollo/server-health  \{"status":"pass"\}
+http://localhost:5000/.well-known/apollo/server-health  \{"status":"pass"\}
